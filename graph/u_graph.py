@@ -11,5 +11,5 @@ class UGraph(BaseGraph):
         super().init_graph()
         x = self.u
         x.sort()
-        y = self.u_construct(self.u)
+        y = self.u_construct(x)
         return x, y

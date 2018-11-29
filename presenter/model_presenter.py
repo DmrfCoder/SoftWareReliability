@@ -18,8 +18,9 @@ def go():
 
 def jm():
     data = getData()
-    ev=input('ev:')
-    ex=input('ex:')
+    ev=0.1#input('ev:')
+    ex=0.1#input('ex:')
+
     jm_parmars = {
         'data': data,
         'ev': float(ev),

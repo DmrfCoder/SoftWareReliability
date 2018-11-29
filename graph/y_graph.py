@@ -11,22 +11,27 @@ class YGraph(BaseGraph):
     def init_graph(self):
         super().init_graph()
 
+        u_len = len(self.u)
+
         x = []
         x_bottom = 0.0
+        self.u.sort()
 
-        for item_u in self.u:
-            temp_x = np.log(1 - item_u)
+        for i in range(u_len - 1):
+            temp_x = -np.log(1 - self.u[i])
             x.append(temp_x)
             x_bottom += temp_x
 
-
-        for r in range(self.last_train_index, self.data_len):
+        y = []
+        for r in range(u_len - 1):
             x_top = 0.0
-            for j in range(self.last_train_index, r):
-                x_top += self.data[j]
+            for j in range(r):
+                x_top += x[j]
 
-            x.append(x_top / x_bottom)
+            y.append(x_top / x_bottom)
 
-        y = self.u_construct(x)
+        y.sort()
 
-        return x, y
+        y2 = self.u_construct(y)
+
+        return y, y2
