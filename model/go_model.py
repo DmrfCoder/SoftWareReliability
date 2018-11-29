@@ -1,20 +1,20 @@
-from base.baseModel import baseModel
+from base.base_model import baseModel
 import numpy as np
 
 
 class GoModel(baseModel):
     eir = 0.0
 
-    def __init__(self, data):
-        super().__init__(data)
+    def __init__(self, parameters):
+        super().__init__(parameters)
         self.xl = 0.0
         self.xr = 0.0
         self.xm = 0.0
         self.d = 0.0
         self.a = 0.0
         self.b = 0.0
-        self.eir=0.1
-        self.n=data.shape[0]
+        self.eir = parameters['eir']
+        self.n = self.data.shape[0]
 
     def set_eir(self, eir):
         self.eir = eir
