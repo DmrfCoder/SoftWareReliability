@@ -8,7 +8,7 @@ class BaseGraph(metaclass=ABCMeta):
 
     def __init__(self, parameters):
         self.parameters = parameters
-        self.data = parameters['data']
+        self.data = parameters['resource']
         self.u = []
         self.last_train_index = 0
         self.data_index_len = self.data.shape[0]
@@ -30,7 +30,7 @@ class BaseGraph(metaclass=ABCMeta):
         self.last_train_index = int(self.data_icount * 0.7) + 1
 
         jm_parmars = {
-            'data': self.data[1:self.last_train_index],
+            'resource': self.data[1:self.last_train_index],
             'ev': 0.1,
             'ex': 0.1
         }

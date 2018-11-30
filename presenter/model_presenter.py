@@ -1,13 +1,13 @@
-from factory.dataFactory import getData
+from factory.graph_data_factory import load_dataset
 from model.go_model import GoModel
 from model.jm_model import JmModel
 
 
 def go():
-    data = getData()
+    data = load_dataset()
 
     go_parmars = {
-        'data': data,
+        'resource': data,
         'eir': 0.1
     }
 
@@ -17,12 +17,12 @@ def go():
 
 
 def jm():
-    data = getData()
+    data = load_dataset()
     ev=0.1#input('ev:')
     ex=0.1#input('ex:')
 
     jm_parmars = {
-        'data': data,
+        'resource': data,
         'ev': float(ev),
         'ex': float(ex)
     }

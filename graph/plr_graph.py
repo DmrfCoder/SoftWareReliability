@@ -11,7 +11,7 @@ class PlrGraph(BaseGraph):
     def init_graph(self):
         super().init_graph()
         go_parmars = {
-            'data': self.data[0:self.last_train_index],
+            'resource': self.data[0:self.last_train_index],
             'eir': 0.1
 
         }

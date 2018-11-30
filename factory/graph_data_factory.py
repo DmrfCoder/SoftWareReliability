@@ -1,8 +1,8 @@
 import numpy as np
 
 
-def getData():
-    path = '../data/sourceData.txt'
+def load_dataset():
+    path = '../resource/sourceData.txt'
     data = np.loadtxt(path)
 
     n = data.shape[0]
