@@ -1,4 +1,5 @@
 from factory.dataFactory import getData
+from graph.plr_graph import PlrGraph
 from graph.u_graph import UGraph
 import matplotlib.pyplot as plt
 
@@ -70,5 +71,19 @@ def y():
     plt.show()
 
 
+def plr():
+    data = getData()
+    plr_parmars = {
+        'data': data
+    }
+
+    plr_graph = PlrGraph(plr_parmars)
+    plr_x, plr_y = plr_graph.init_graph()
+    print(plr_y)
+    plt.scatter(plr_x,plr_y)
+    plt.show()
+
+
+
 if __name__ == '__main__':
-    y()
+    plr()

@@ -10,8 +10,6 @@ class JmModel(baseModel):
         super().__init__(parameters)
         self.ey = parameters['ev']
         self.ex = parameters['ex']
-        self.data_count = self.data.shape[0] - 1
-        self.data_index_len = self.data.shape[0]
         self.left = 0.0
         self.right = 0.0
         self.root = 0.0
