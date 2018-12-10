@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def load_dataset():
+def load_sys_dataset():
     path = '../resource/sourceData.txt'
     data = np.loadtxt(path)
 

@@ -1,7 +1,6 @@
 # coding: utf-8
 import numpy as np
 
-from factory.bp_data_factory import load_dataset
 
 
 def sigmoid(z):
@@ -240,12 +239,12 @@ def load_resize_dataset():
     return dataset
 
 
-def shallow_train():
-    dataset = load_resize_dataset()
-    train_set_x = dataset['train_set_x']
-    train_set_y = dataset['train_set_y']
-    test_set_x = dataset['test_set_x']
-    test_set_y = dataset['test_set_y']
+def shallow_train(train_set_x, train_set_y, test_set_x, test_set_y, sys_layers_dims):
+    # dataset = load_resize_dataset()
+    # train_set_x = dataset['train_set_x']
+    # train_set_y = dataset['train_set_y']
+    # test_set_x = dataset['test_set_x']
+    # test_set_y = dataset['test_set_y']
 
     d = model(train_set_x, train_set_y, test_set_x, test_set_y, num_iterations=2000, learning_rate=0.005,
               print_cost=True)

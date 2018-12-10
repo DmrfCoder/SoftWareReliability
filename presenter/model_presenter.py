@@ -33,4 +33,4 @@ def jm():
 
 
 if __name__ == '__main__':
-    jm()
+    go()
