@@ -45,22 +45,36 @@ def read_decode_cat_data():
     return train_x, train_y, test_x, test_y
 
 
+def Normalize(data):
+    m = np.mean(data)
+    mx = max(data)
+    mn = min(data)
+    print('mean: ' + str(m) + ' mx:' + str(mx) + ' mn:' + str(mn))
+    return [(float(i) - m) / (mx - mn) for i in data]
+
+
 def read_decode_sys_data():
     y = load_sys_dataset()
     sum_count = len(y)
     y = np.array(y)
     np.delete(y, [y[0]])
     x = np.arange(start=0, stop=sum_count, step=1)
+
+    x = Normalize(x)
+    y = Normalize(y)
+    x=np.array(x)
+    y=np.array(y)
+
     last_train_index = int((sum_count - 1) * 0.8)
     train_x = x[1:last_train_index]
     train_y = y[1:last_train_index]
     test_x = x[last_train_index:]
     test_y = y[last_train_index:]
     train_x_flatten = train_x.reshape(train_x.shape[0],
-                                           -1).T
+                                      -1).T
     test_x_flatten = test_x.reshape(test_y.shape[0], -1).T
-    train_y=train_y.reshape(1,-1)
-    test_y=test_y.reshape(1,-1)
+    train_y = train_y.reshape(1, -1)
+    test_y = test_y.reshape(1, -1)
     return train_x_flatten, train_y, test_x_flatten, test_y
 
 

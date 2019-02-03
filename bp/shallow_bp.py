@@ -2,7 +2,6 @@
 import numpy as np
 
 
-
 def sigmoid(z):
     """
     Compute the sigmoid of z
@@ -31,13 +30,13 @@ def initialize_with_zeros(dim):
     b -- initialized scalar (corresponds to the bias)
     """
 
-    w = np.zeros(shape=(dim, 1))
+
     b = 0
 
-    assert (w.shape == (dim, 1))
+
     assert (isinstance(b, float) or isinstance(b, int))
 
-    return w, b
+    return b
 
 
 def propagate(w, b, X, Y):
@@ -61,11 +60,20 @@ def propagate(w, b, X, Y):
 
     m = X.shape[1]
 
-    A = sigmoid(np.dot(w.T, X) + b)  # compute activation
-    cost = -(1 / m) * np.sum(Y * np.log(A) + (1 - Y) * np.log(1 - A), axis=1)  # compute cost
+    # 不激活
+    # A = sigmoid(np.dot(w.T, X) + b)  # compute activation
+    A = np.dot(w.T, X) + b  # compute activation
 
-    dw = (1 / m) * np.dot(X, (A - Y).T)
-    db = (1 / m) * np.sum(A - Y)
+    # mse 损失函数
+    cost = np.sum((Y - A) ** 2)/m
+
+    # 计算梯度/倒数
+    dw=2*np.dot(-X,(Y-A).T)/m
+    db=2*np.sum(Y-A)/m
+
+
+    # dw = (1 / m) * np.dot(X, (A - Y).T)
+    # db = (1 / m) * np.sum(A - Y)
 
     assert (dw.shape == w.shape)
     assert (db.dtype == float)
@@ -160,6 +168,13 @@ def predict(w, b, X):
     return Y_prediction
 
 
+def initialize_with_random(param):
+    np.random.seed(2)  # we set up a seed so that our output matches ours although the initialization is random.
+
+    W = np.random.randn(param,1) * 0.01
+    return W
+
+
 def model(X_train, Y_train, X_test, Y_test, num_iterations=2000, learning_rate=0.5, print_cost=False):
     """
     Builds the logistic regression model by calling the function you've implemented previously
@@ -177,7 +192,8 @@ def model(X_train, Y_train, X_test, Y_test, num_iterations=2000, learning_rate=0
     d -- dictionary containing information about the model.
     """
 
-    w, b = initialize_with_zeros(X_train.shape[0])
+    w=initialize_with_random(X_train.shape[0])
+    b = initialize_with_zeros(X_train.shape[0])
 
     params, grads, costs = optimize(w, b, X_train, Y_train, num_iterations=num_iterations, learning_rate=learning_rate,
                                     print_cost=print_cost)
@@ -239,6 +255,7 @@ def load_resize_dataset():
     return dataset
 
 
+
 def shallow_train(train_set_x, train_set_y, test_set_x, test_set_y, sys_layers_dims):
     # dataset = load_resize_dataset()
     # train_set_x = dataset['train_set_x']
@@ -246,6 +263,7 @@ def shallow_train(train_set_x, train_set_y, test_set_x, test_set_y, sys_layers_d
     # test_set_x = dataset['test_set_x']
     # test_set_y = dataset['test_set_y']
 
-    d = model(train_set_x, train_set_y, test_set_x, test_set_y, num_iterations=2000, learning_rate=0.005,
-              print_cost=True)
 
+
+    d = model(train_set_x, train_set_y, test_set_x, test_set_y, num_iterations=2000, learning_rate=0.0001,
+              print_cost=True)

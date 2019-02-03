@@ -1,4 +1,4 @@
-from factory.graph_data_factory import load_dataset
+from factory.graph_data_factory import load_sys_dataset
 from graph.plr_graph import PlrGraph
 from graph.u_graph import UGraph
 import matplotlib.pyplot as plt
@@ -34,7 +34,7 @@ def coculate_ks(x, y):
 
 
 def u():
-    data = load_dataset()
+    data = load_sys_dataset()
     u_parmars = {
         'resource': data
     }
@@ -54,7 +54,7 @@ def u():
 
 
 def y():
-    data = load_dataset()
+    data = load_sys_dataset()
     u_parmars = {
         'resource': data
     }
@@ -72,7 +72,7 @@ def y():
 
 
 def plr():
-    data = load_dataset()
+    data = load_sys_dataset()
     plr_parmars = {
         'resource': data
     }
@@ -86,4 +86,4 @@ def plr():
 
 
 if __name__ == '__main__':
-    plr()
+    u()
